@@ -18,6 +18,7 @@ export default function Index() {
           <PostLink title="Learn Next.js is awesome" />
           <PostLink title="Deploy apps with Zeit" />
         </ul>
+        <img src="https://avatars0.githubusercontent.com/u/22168226?s=400&v=4"/>
       </Layout>
   );
 }
