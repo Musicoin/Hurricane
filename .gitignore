@@ -39,3 +39,7 @@ jspm_packages
 
 #editor settings
 .idea
+
+#dependency lock files
+package-lock.json
+yarn.lock
