@@ -12,7 +12,7 @@ const Layout = props => (
       <meta charSet="UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
-      <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css"/>
+      <link rel="stylesheet" type="text/css" href="/css/cssreset-min.css"/>
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"/>
       <link rel="stylesheet" href="/css/style.css"/>
       <title>Musicoin - Homepage</title>
