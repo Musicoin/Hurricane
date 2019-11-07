@@ -1,9 +1,3 @@
-import Link from 'next/link';
-
-const linkStyle = {
-  marginRight: 15
-};
-
 const Header = () => (
     <header id="header">
       <div className="container header__container">
