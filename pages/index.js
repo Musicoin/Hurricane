@@ -1,3 +1,5 @@
+import {withApollo} from '../apollo/client';
+
 import Layout from '../components/MyLayout';
 import MenuCard from '../components/Cards/MenuCard';
 import SocialCard from '../components/Cards/SocialCard';
@@ -8,7 +10,7 @@ import EventsCard from '../components/Cards/EventsCard';
 import LocationCard from '../components/Cards/LocationCard';
 import Track from '../components/Track';
 
-export default function Home() {
+function Home() {
   return (
       <Layout>
         <div class="content__container-left">
@@ -88,3 +90,4 @@ export default function Home() {
       </Layout>
   );
 }
+export default withApollo(Home);
