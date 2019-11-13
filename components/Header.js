@@ -1,14 +1,6 @@
-import gql from 'graphql-tag';
 import {useQuery} from '@apollo/react-hooks';
-
-const StatsQuery = gql`
-    query StatsQuery {
-        stats {
-            plays
-            tips
-        }
-    }
-`;
+import StatsQuery from '../graphql/query/StatsQuery';
+import NumberFormat from 'react-number-format';
 
 const Header = () => {
   const {
@@ -25,8 +17,8 @@ const Header = () => {
           </div>
           <div className="header__container-middle">
             <h2 className="user__count">
-              <span className="user__count-num">{stats ? stats.plays : 0}</span> Played and paid by UBI,
-              <span className="user__count-num"> {stats ? stats.tips : 0}</span> tips by fans.</h2>
+              <span className="user__count-num"><NumberFormat value={stats ? stats.plays : 0} displayType={'text'} thousandSeparator={true}/></span> Played and paid by UBI,
+              <span className="user__count-num"><NumberFormat value={stats ? stats.tips : 0} displayType={'text'} thousandSeparator={true}/></span> tips by fans.</h2>
           </div>
           <div className="header__container-right">
             <ul className="header__menu">

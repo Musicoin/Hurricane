@@ -1,7 +1,15 @@
+let stats = { plays: 6781650, tips: 4380785 };
+
 export const resolvers = {
   Query: {
     stats (_parent, _args, _context, _info) {
-      return { plays: "6,781,650", tips: "4,380,785" }
+      return stats;
+    }
+  },
+  Mutation:{
+    increasePlays(_parent, _args, _context, _info){
+      stats.plays= stats.plays+1;
+      return stats;
     }
   }
 }
