@@ -1,12 +1,9 @@
-import {useQuery} from '@apollo/react-hooks';
 import StatsQuery from '../graphql/query/StatsQuery';
-import NumberFormat from 'react-number-format';
+import PlaysIncreasedSubscription from '../graphql/subscription/PlaysIncreasedSubscription';
+import {Query} from 'react-apollo';
+import StatsComponent from './Stats';
 
-const Header = () => {
-  const {
-    data: {stats},
-  } = useQuery(StatsQuery);
-
+function Header() {
   return (
       <header id="header">
         <div className="container header__container">
@@ -16,9 +13,23 @@ const Header = () => {
             </a>
           </div>
           <div className="header__container-middle">
-            <h2 className="user__count">
-              <span className="user__count-num"><NumberFormat value={stats ? stats.plays : 0} displayType={'text'} thousandSeparator={true}/></span> Played and paid by UBI,
-              <span className="user__count-num"><NumberFormat value={stats ? stats.tips : 0} displayType={'text'} thousandSeparator={true}/></span> tips by fans.</h2>
+            <Query query={StatsQuery}>
+              {({loading, error, data, subscribeToMore}) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <p>Error: {error.message}</p>;
+                const more = () => subscribeToMore({
+                  document: PlaysIncreasedSubscription,
+                  updateQuery: (prev, {subscriptionData}) => {
+                    if (!subscriptionData.data.playsIncreased) return prev;
+                    let stats = subscriptionData.data.playsIncreased;
+                    return Object.assign({}, prev, {
+                      stats,
+                    });
+                  },
+                });
+                return <StatsComponent stats={data.stats} subscribeToMore={more}/>;
+              }}
+            </Query>
           </div>
           <div className="header__container-right">
             <ul className="header__menu">
@@ -29,6 +40,7 @@ const Header = () => {
         </div>
       </header>
   );
-};
+
+}
 
 export default Header;

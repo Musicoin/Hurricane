@@ -12,4 +12,8 @@ export const typeDefs = gql`
     type Mutation{
         increasePlays: Stats
     }
+    
+    type Subscription{
+        playsIncreased: Stats
+    }
 `;

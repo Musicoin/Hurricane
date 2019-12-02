@@ -3,6 +3,11 @@ import Head from 'next/head';
 import {ApolloProvider} from '@apollo/react-hooks';
 import {ApolloClient} from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
+import {HttpLink} from 'apollo-link-http';
+import fetch from 'isomorphic-unfetch';
+import {WebSocketLink} from 'apollo-link-ws';
+import {split} from 'apollo-link';
+import {getMainDefinition} from 'apollo-utilities';
 
 let apolloClient = null;
 
@@ -122,27 +127,47 @@ function initApolloClient(initialState) {
  * @param  {Object} [initialState={}]
  */
 function createApolloClient(initialState = {}) {
-  const ssrMode = typeof window === 'undefined';
-  const cache = new InMemoryCache().restore(initialState);
-
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
-  return new ApolloClient({
-    ssrMode,
-    link: createIsomorphLink(),
-    cache,
-  });
-}
 
-function createIsomorphLink() {
-  if (typeof window === 'undefined') {
-    const {SchemaLink} = require('apollo-link-schema');
-    const {schema} = require('./schema');
-    return new SchemaLink({schema});
-  } else {
-    const {HttpLink} = require('apollo-link-http');
-    return new HttpLink({
-      uri: '/api/graphql',
-      credentials: 'same-origin',
+  // Create an http link:
+  const httpLink = new HttpLink({
+    uri: 'http://35.231.164.121:5050/graphql',
+    credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+    fetch,
+  });
+
+  let isClient = process.browser;
+  let link = null;
+
+  if (isClient) {
+
+// Create a WebSocket link:
+    const wsLink = new WebSocketLink({
+      uri: `ws://35.231.164.121:5050/subscriptions`,
+      options: {
+        reconnect: true,
+      },
     });
+
+// using the ability to split links, you can send data to each link
+// depending on what kind of operation is being sent
+    link = split(
+        // split based on operation type
+        ({query}) => {
+          const definition = getMainDefinition(query);
+          return (
+              definition.kind === 'OperationDefinition' &&
+              definition.operation === 'subscription'
+          );
+        },
+        wsLink,
+        httpLink,
+    );
   }
+  let ssrMode = typeof window === 'undefined';
+  return new ApolloClient({
+    ssrMode, // Disables forceFetch on the server (so queries are only run once)
+    link: isClient ? link : httpLink,
+    cache: new InMemoryCache().restore(initialState),
+  });
 }
