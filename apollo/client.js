@@ -131,7 +131,7 @@ function createApolloClient(initialState = {}) {
 
   // Create an http link:
   const httpLink = new HttpLink({
-    uri: 'http://35.231.164.121:5050/graphql',
+    uri: 'https://t6.musicoin.org/graphql',
     credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
     fetch,
   });
@@ -143,7 +143,7 @@ function createApolloClient(initialState = {}) {
 
 // Create a WebSocket link:
     const wsLink = new WebSocketLink({
-      uri: `ws://35.231.164.121:5050/subscriptions`,
+      uri: `wss://t6.musicoin.org/subscriptions`,
       options: {
         reconnect: true,
       },
