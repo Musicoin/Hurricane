@@ -9,6 +9,7 @@ import NewArtistCard from '../components/Cards/NewArtistCard';
 import EventsCard from '../components/Cards/EventsCard';
 import LocationCard from '../components/Cards/LocationCard';
 import Track from '../components/Track';
+import RecentlyPlayedCard from '../components/Cards/RecentPlaysCard';
 
 function Home() {
   return (
@@ -19,6 +20,7 @@ function Home() {
           <MobileAppCard/>
         </div>
         <div class="content__container-middle">
+          <RecentlyPlayedCard />
           <div class="card">
             <div class="card__title">
               <p>Top Tips</p>
