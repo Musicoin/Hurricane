@@ -25,22 +25,22 @@ const Track = (props) => {
             </div>
           </div>
           <div className="track__attr">
-            <p className="track__title">{props.title}</p>
-            <p className="track__artist">{props.artist}</p>
-            <p className="track__genre">{props.genre}</p>
+            <p className="track__title">{props.track.title}</p>
+            <p className="track__artist">{props.track.artistName}</p>
+            <p className="track__genre">{props.track.genres.join(", ")}</p>
           </div>
         </div>
         <div className="track__right">
         <span className="track__dot"
               onClick={() => {
-                increasePlays();
+                increasePlays({variables: {releaseId: props.track.tx}});
               }
               }>
           {/*<img src="/img/icons/icon-dot.png" alt=""/></span>*/}
           <img src="/img/icons/play-small.png" alt=""/></span>
           <div className="track__stats">
-            <img src="/img/icons/like.png" className="like" alt=""/><p className="track__like">{props.likes}</p>
-            <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.tips}</p>
+            <img src="/img/icons/like.png" className="like" alt=""/><p className="track__like">{props.track.directPlayCount?props.track.directPlayCount:0}</p>
+            <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.track.directTipCount?props.track.directTipCount:0}</p>
           </div>
         </div>
       </div>
