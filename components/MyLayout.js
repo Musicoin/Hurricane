@@ -19,34 +19,34 @@ const Layout = props => (
         </div>
       </div>
       <div id="player">
-        <div class="player__container">
-          <div class="player__left">
-            <div class="player__pic">
-              <img src="/img/tracks/tracks-1.png" alt="" class="player__pic-file"/>
+        <div className="player__container">
+          <div className="player__left">
+            <div className="player__pic">
+              <img src="/img/tracks/tracks-1.png" alt="" className="player__pic-file"/>
             </div>
-            <div class="player__attr">
-              <p class="player__title">Track's title</p>
-              <p class="player__artist">Artist's name</p>
+            <div className="player__attr">
+              <p className="player__title">Track's title</p>
+              <p className="player__artist">Artist's name</p>
             </div>
           </div>
-          <div class="player__middle">
-            <div class="player__controller">
-              <div class="player__controller-repeat"><img src="/img/icons/repeat.svg" alt=""/></div>
-              <div class="player__controller-previous"><img src="/img/icons/prev.svg" alt=""/></div>
-              <div class="player__controller-play"><img src="/img/icons/play.svg" alt=""/></div>
-              <div class="player__controller-next"><img src="/img/icons/next.svg" alt=""/></div>
-              <div class="player__controller-shuffle"><img src="/img/icons/shuffle.svg" alt=""/></div>
+          <div className="player__middle">
+            <div className="player__controller">
+              <div className="player__controller-repeat"><img src="/img/icons/repeat.svg" alt=""/></div>
+              <div className="player__controller-previous"><img src="/img/icons/prev.svg" alt=""/></div>
+              <div className="player__controller-play"><img src="/img/icons/play.svg" alt=""/></div>
+              <div className="player__controller-next"><img src="/img/icons/next.svg" alt=""/></div>
+              <div className="player__controller-shuffle"><img src="/img/icons/shuffle.svg" alt=""/></div>
             </div>
-            <div class="player__duration">
-              <div class="player__controller-duration"><img src="/img/icons/duration.svg" alt=""/></div>
-              <div class="player__controller-tipping"><img src="/img/icons/tipping.svg" alt=""/></div>
+            <div className="player__duration">
+              <div className="player__controller-duration"><img src="/img/icons/duration.svg" alt=""/></div>
+              <div className="player__controller-tipping"><img src="/img/icons/tipping.svg" alt=""/></div>
 
             </div>
           </div>
-          <div class="player__right">
-            <div class="player__synth">
-              <div class="player__synth-volume"><img src="/img/icons/volume.svg" alt=""/></div>
-              <div class="player__synth-queue"><img src="/img/icons/queue.svg" alt=""/></div>
+          <div className="player__right">
+            <div className="player__synth">
+              <div className="player__synth-volume"><img src="/img/icons/volume.svg" alt=""/></div>
+              <div className="player__synth-queue"><img src="/img/icons/queue.svg" alt=""/></div>
             </div>
           </div>
         </div>
