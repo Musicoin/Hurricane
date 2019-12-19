@@ -11,6 +11,9 @@ import LocationCard from '../components/Cards/LocationCard';
 import RecentlyPlayedCard from '../components/Cards/RecentPlaysCard';
 import RecentPlaysQuery from '../graphql/query/RecentPlaysQuery';
 import RecentPlaysUpdatedSubscription from '../graphql/subscription/RecentPlaysUpdatedSubscription';
+import TopPlayedCard from '../components/Cards/TopPlayedCard';
+import TopPlaysQuery from '../graphql/query/TopPlaysQuery';
+import TopPlaysUpdatedSubscription from '../graphql/subscription/TopPlaysUpdatedSubscription';
 
 import {Query} from 'react-apollo';
 
@@ -23,6 +26,27 @@ function Home() {
           <MobileAppCard/>
         </div>
         <div className="content__container-middle">
+          <Query query={TopPlaysQuery} variables={{limit: 10}}>
+            {({loading, error, data, subscribeToMore}) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error: {error.message}</p>;
+              const more = () => subscribeToMore({
+                document: TopPlaysUpdatedSubscription,
+                updateQuery: (prev, {subscriptionData}) => {
+                  if (!subscriptionData.data.topPlaysUpdated) return prev;
+                  let release = subscriptionData.data.topPlaysUpdated;
+                  prev.topPlays.pop();
+                  return Object.assign({}, prev, {
+                    topPlays: [release, ...prev.topPlays]
+                  });
+                },
+              });
+              return (
+                  <TopPlayedCard data={data.topPlays} subscribeToMore={more}/>
+              );
+
+            }}
+          </Query>
           <Query query={RecentPlaysQuery} variables={{limit: 10}}>
             {({loading, error, data, subscribeToMore}) => {
               if (loading) return <p>Loading...</p>;

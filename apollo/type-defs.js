@@ -23,6 +23,7 @@ export const typeDefs = gql`
     type Query {
         stats: Stats
         recentPlays(limit: Int):[Release]
+        topPlays(limit: Int): [Release]
     }
     type Mutation{
         increasePlays(releaseId: String): Stats
@@ -31,5 +32,6 @@ export const typeDefs = gql`
     type Subscription{
         playsIncreased: Stats
         recentPlaysUpdated: Release
+        topPlaysUpdated: Release
     }
 `;
