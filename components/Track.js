@@ -19,18 +19,24 @@ const Track = (props) => {
       <div className="track">
         <div className="track__left">
           <div className="track__pic-container">
-            <img src={props.image} className="track__pic" alt=""/>
+            <img src={props.image} height="34" width="34" className="track__pic" alt=""/>
             <div className="track__pic-overlay">
               <div className="track__play"><img src="/img/icons/play.png" alt=""/></div>
             </div>
           </div>
           <div className="track__attr">
             <p className="track__title">{props.track.title}</p>
-            <p className="track__artist">{props.track.artistName}</p>
-            <p className="track__genre">{props.track.genres.join(", ")}</p>
+            <p className="track__artist">{props.track.artistName}
+              <span className="track__genre">{props.track.genres.join(', ')}</span></p>
           </div>
         </div>
         <div className="track__right">
+          <div className="track__stats">
+            <img src="/img/icons/like.png" className="like" alt=""/><p className="track__like">{props.track.directPlayCount ? props.track.directPlayCount : 0}</p>
+          </div>
+          <div className="track__stats">
+            <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.track.directTipCount ? props.track.directTipCount : 0}</p>
+          </div>
         <span className="track__dot"
               onClick={() => {
                 increasePlays({variables: {releaseId: props.track.tx}});
@@ -38,10 +44,10 @@ const Track = (props) => {
               }>
           {/*<img src="/img/icons/icon-dot.png" alt=""/></span>*/}
           <img src="/img/icons/play-small.png" alt=""/></span>
-          <div className="track__stats">
-            <img src="/img/icons/like.png" className="like" alt=""/><p className="track__like">{props.track.directPlayCount?props.track.directPlayCount:0}</p>
-            <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.track.directTipCount?props.track.directTipCount:0}</p>
-          </div>
+          {/*<div className="track__stats">*/}
+          {/*  <img src="/img/icons/like.png" className="like" alt=""/><p className="track__like">{props.track.directPlayCount?props.track.directPlayCount:0}</p>*/}
+          {/*  <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.track.directTipCount?props.track.directTipCount:0}</p>*/}
+          {/*</div>*/}
         </div>
       </div>
   );
