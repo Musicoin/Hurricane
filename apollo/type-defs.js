@@ -24,6 +24,7 @@ export const typeDefs = gql`
         stats: Stats
         recentPlays(limit: Int):[Release]
         topPlays(limit: Int): [Release]
+        trendingList(limit: Int): [Release]
     }
     type Mutation{
         increasePlays(releaseId: String): Stats
