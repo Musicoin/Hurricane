@@ -11,11 +11,6 @@ class TrendingCard extends React.Component {
         <div className="card">
           <div className="card__title">
             <p>Trending</p>
-            <div className="card__filter">
-              <a href="#" className="card__filter-link active">Day |</a>
-              <a href="#" className="card__filter-link">Week |</a>
-              <a href="#" className="card__filter-link">Month </a>
-            </div>
           </div>
           <div className="card__content">
             <div className="top-tips">
