@@ -23,7 +23,7 @@ function Home() {
           <MobileAppCard/>
         </div>
         <div className="content__container-middle">
-          <Query query={TrendingReleasesQuery} variables={{limit: 10}}>
+          <Query query={TrendingReleasesQuery} variables={{limit: 20}}>
             {({loading, error, data, subscribeToMore}) => {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error: {error.message}</p>;
