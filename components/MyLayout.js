@@ -10,6 +10,7 @@ const Layout = props => (
         <meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
         <link rel="stylesheet" type="text/css" href="/css/cssreset-min.css"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/player.css" />
         <link rel="stylesheet" href="/css/scss/style.css"/>
         <title>Musicoin - Homepage</title>
       </Head>
