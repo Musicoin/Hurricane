@@ -1,27 +1,43 @@
 import React from 'react';
 import AudioPlayer from 'react-h5-audio-player';
+import CurrentTrackQuery from '../graphql/query/local/CurrentTrackQuery';
+import {Query} from 'react-apollo';
 
 let secondsCount = 0;
 
 class Player extends React.Component {
 
-  listen(){
+  listen() {
     secondsCount++;
-    console.log(secondsCount + " seconds played");
-    if(secondsCount == 30){
-      alert("We can consider this song to be 'played' now!");
+    console.log(secondsCount + ' seconds played');
+    if (secondsCount == 30) {
+      alert('We can consider this song to be \'played\' now!');
     }
   }
 
   render() {
     return (
         <div>
-          <AudioPlayer
-              src="https://kickass.musicoin.org/api/test/track/download/0xc8ab5b521936de77063af770271b72736e328774"
-              controls
-              listenInterval={1000}
-              onListen={()=> this.listen()}
-          />
+          <Query query={CurrentTrackQuery}>
+            {({loading, error, data}) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error: {error.message}</p>;
+              if (data && data.currentTrack) {
+                let trackInfo = data.currentTrack.title + " - " + data.currentTrack.artistName;
+                return (
+                    <AudioPlayer
+                        src={data.currentTrack.trackUrl}
+                        controls
+                        listenInterval={1000}
+                        onListen={() => this.listen()}
+                        autoPlay
+                        footer={trackInfo}
+                    />);
+              }else{
+                return null;
+              }
+            }}
+          </Query>
         </div>
     );
   };

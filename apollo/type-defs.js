@@ -18,6 +18,7 @@ export const typeDefs = gql`
         description: String
         directTipCount: Int
         directPlayCount: Int
+        trackUrl: String
     }
 
     type Query {

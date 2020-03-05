@@ -11,6 +11,7 @@ const TrendingReleasesQuery = gql`
             description
             genres
             trackImg
+            trackUrl
         }
     }
 `;

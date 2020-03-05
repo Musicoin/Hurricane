@@ -8,6 +8,7 @@ import fetch from 'isomorphic-unfetch';
 import {WebSocketLink} from 'apollo-link-ws';
 import {split} from 'apollo-link';
 import {getMainDefinition} from 'apollo-utilities';
+import { resolvers, typeDefs } from "./local/resolvers";
 
 let apolloClient = null;
 
@@ -167,9 +168,17 @@ function createApolloClient(initialState = {}) {
     );
   }
   let ssrMode = typeof window === 'undefined';
+  let cache = new InMemoryCache().restore(initialState);
+  cache.writeData({
+    data: {
+      currentTrack: null
+    }
+  });
   return new ApolloClient({
     ssrMode, // Disables forceFetch on the server (so queries are only run once)
     link: isClient ? link : httpLink,
-    cache: new InMemoryCache().restore(initialState),
+    cache,
+    typeDefs,
+    resolvers
   });
 }

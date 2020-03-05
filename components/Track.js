@@ -1,8 +1,10 @@
 import IncreasePlaysMutation from '../graphql/mutation/IncreasePlaysMutation';
 import StatsQuery from '../graphql/query/StatsQuery';
-import {useMutation} from '@apollo/react-hooks';
+import CurrentTrackQuery from '../graphql/query/local/CurrentTrackQuery';
+import {useApolloClient, useMutation} from '@apollo/react-hooks';
 
 const Track = (props) => {
+  const client = useApolloClient();
   const [increasePlays] = useMutation(
       IncreasePlaysMutation,
       {
@@ -37,13 +39,16 @@ const Track = (props) => {
           <div className="track__stats">
             <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.track.directTipCount ? props.track.directTipCount : 0}</p>
           </div>
-        <span className="track__dot"
-              onClick={() => {
-                increasePlays({variables: {releaseId: props.track.tx}});
-              }
-              }>
+          <span className="track__dot"
+                onClick={() => {
+                  // client.writeData({data: {currentTrack: props.track}});
+                  client.writeQuery({query: CurrentTrackQuery, data:{currentTrack: props.track}});
+                  localStorage.clear();
+                  // increasePlays({variables: {releaseId: props.track.tx}});
+                }
+                }>
           {/*<img src="/img/icons/icon-dot.png" alt=""/></span>*/}
-          <img src="/img/icons/play-small.png" alt=""/></span>
+            <img src="/img/icons/play-small.png" alt=""/></span>
           {/*<div className="track__stats">*/}
           {/*  <img src="/img/icons/like.png" className="like" alt=""/><p className="track__like">{props.track.directPlayCount?props.track.directPlayCount:0}</p>*/}
           {/*  <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.track.directTipCount?props.track.directTipCount:0}</p>*/}
