@@ -8,7 +8,7 @@ import fetch from 'isomorphic-unfetch';
 import {WebSocketLink} from 'apollo-link-ws';
 import {split} from 'apollo-link';
 import {getMainDefinition} from 'apollo-utilities';
-import { resolvers, typeDefs } from "./local/resolvers";
+import { resolvers} from "./local/resolvers";
 
 let apolloClient = null;
 
@@ -178,7 +178,6 @@ function createApolloClient(initialState = {}) {
     ssrMode, // Disables forceFetch on the server (so queries are only run once)
     link: isClient ? link : httpLink,
     cache,
-    typeDefs,
     resolvers
   });
 }

@@ -1,24 +1,9 @@
-import gql from "graphql-tag";
+import CurrentTrackQuery from '../../graphql/query/local/CurrentTrackQuery';
 
-export const typeDefs = gql`
-    type CurrentTrack{
-        tx: String
-        title: String
-        link: String
-        pppLink: String
-        genres: [String]
-        artistName: String
-        artistLink: String
-        trackImg: String
-        description: String
-        directTipCount: Int
-        directPlayCount: Int
-        trackUrl: String
-    }
-    
-    extend type Query {
-        currentTrack: CurrentTrack
-    }
-`;
-
-export const resolvers = {};
+export const resolvers = {
+    Mutation: {
+        changeCurrentTrack: (_root, variables, { cache, getCacheKey }) => {
+            cache.writeQuery({query: CurrentTrackQuery, data:{currentTrack: variables.track}});
+        },
+    },
+};

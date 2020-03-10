@@ -30,7 +30,7 @@ export const typeDefs = gql`
     type Mutation{
         increasePlays(releaseId: String): Stats
     }
-    
+
     type Subscription{
         playsIncreased: Stats
         recentPlaysUpdated: Release

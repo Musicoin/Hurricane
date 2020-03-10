@@ -11,6 +11,7 @@ class Player extends React.Component {
     secondsCount++;
     console.log(secondsCount + ' seconds played');
     if (secondsCount == 30) {
+      //ToDo: fire plays increased mutation
       alert('We can consider this song to be \'played\' now!');
     }
   }
