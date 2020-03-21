@@ -146,7 +146,7 @@ function createApolloClient(initialState = {}) {
 // Create a WebSocket link:
     const wsLink = new WebSocketLink({
       // uri: 'ws://192.168.2.103:8082/subscriptions',
-      uri: `wss://t7.musicoin.org/subscriptions`,
+      uri: `wss://t7.musicoin.org/graphql`,
       options: {
         reconnect: true,
       },
