@@ -21,11 +21,19 @@ export const typeDefs = gql`
         trackUrl: String
     }
 
+    type Artist {
+        name: String
+        imageUrl: String
+        profileAddress: String
+        releaseCount: Int!
+    }
+
     type Query {
         stats: Stats
         recentPlays(limit: Int):[Release]
         topPlays(limit: Int): [Release]
         trendingList(limit: Int): [Release]
+        getArtistOfTheWeek: [Artist]
     }
     type Mutation{
         increasePlays(releaseId: String): Stats

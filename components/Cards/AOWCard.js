@@ -1,5 +1,14 @@
-export default function AOWCard(){
-  return(
+import {useQuery} from '@apollo/react-hooks';
+import AOWQuery from '../../graphql/query/AOWQuery';
+
+export default function AOWCard() {
+  const {loading, error, data} = useQuery(AOWQuery);
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+  const artist = data.getArtistOfTheWeek[0];
+
+  return (
       <div className="card">
         <div className="card__title">
           <p>Artist of the week</p>
@@ -8,7 +17,7 @@ export default function AOWCard(){
           <div className="aow">
             <div className="aow__container">
               <div className="aow__pic">
-                <img src="https://images.theconversation.com/files/258026/original/file-20190208-174861-nms2kt.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="" className="aow__pic-file"/>
+                <img src={artist.imageUrl} alt="" className="aow__pic-file"/>
               </div>
               <div className="aow__attr">
                 <div className="aow__attr--player">
@@ -16,16 +25,13 @@ export default function AOWCard(){
                 </div>
                 <div className="aow__attr-text">
                   <p className="aow__attr-track">Track's title</p>
-                  <p className="aow__attr-artist">Artist's name</p>
+                  <p className="aow__attr-artist">{artist.name}</p>
                 </div>
               </div>
-            </div>
-
-            <div className="card__more">
-              <a href="#" className="card__more-link">See more artists of the week</a>
             </div>
           </div>
         </div>
       </div>
-  )
+
+  );
 }
