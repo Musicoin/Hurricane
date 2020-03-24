@@ -1,12 +1,14 @@
-import {useQuery} from '@apollo/react-hooks';
+import {useMutation, useQuery} from '@apollo/react-hooks';
 import AOWQuery from '../../graphql/query/AOWQuery';
+import ChangeCurrentTrack from '../../graphql/mutation/local/ChangeCurrentTrack';
 
 export default function AOWCard() {
   const {loading, error, data} = useQuery(AOWQuery);
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-  const artist = data.getArtistOfTheWeek[0];
+  const aow = data.getArtistOfTheWeek;
+  const [changeCurrentTrack] = useMutation(ChangeCurrentTrack, {variables:{track: aow.release}});
 
   return (
       <div className="card">
@@ -17,15 +19,15 @@ export default function AOWCard() {
           <div className="aow">
             <div className="aow__container">
               <div className="aow__pic">
-                <img src={artist.imageUrl} alt="" className="aow__pic-file"/>
+                <img src={aow.artist.imageUrl} alt="" className="aow__pic-file"/>
               </div>
               <div className="aow__attr">
-                <div className="aow__attr--player">
+                <div className="aow__attr--player" onClick={changeCurrentTrack}>
                   <img src="/img/icons/play.png" alt=""/>
                 </div>
                 <div className="aow__attr-text">
-                  <p className="aow__attr-track">Track's title</p>
-                  <p className="aow__attr-artist">{artist.name}</p>
+                  <p className="aow__attr-track">{aow.release.title}</p>
+                  <p className="aow__attr-artist">{aow.artist.name}</p>
                 </div>
               </div>
             </div>

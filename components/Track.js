@@ -1,20 +1,7 @@
-import IncreasePlaysMutation from '../graphql/mutation/IncreasePlaysMutation';
-import StatsQuery from '../graphql/query/StatsQuery';
 import ChangeCurrentTrack from '../graphql/mutation/local/ChangeCurrentTrack';
 import {useMutation} from '@apollo/react-hooks';
 
 const Track = (props) => {
-  const [increasePlays] = useMutation(
-      IncreasePlaysMutation,
-      {
-        update(cache, {data: {increasePlays}}) {
-          const {stats} = cache.readQuery({query: StatsQuery});
-          cache.writeQuery({
-            query: StatsQuery,
-            data: {stats: increasePlays},
-          });
-        },
-      });
   const [changeCurrentTrack] = useMutation(ChangeCurrentTrack, {variables:{track: props.track}});
 
   return (

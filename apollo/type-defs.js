@@ -26,7 +26,12 @@ export const typeDefs = gql`
         name: String
         imageUrl: String
         profileAddress: String
-        releaseCount: Int!
+        releaseCount: Int
+    }
+
+    type ArtistOfTheWeekResult {
+        release: Release
+        artist: Artist
     }
 
     type Query {
@@ -34,7 +39,7 @@ export const typeDefs = gql`
         recentPlays(limit: Int):[Release]
         topPlays(limit: Int): [Release]
         trendingList(limit: Int): [Release]
-        getArtistOfTheWeek: [Artist]
+        getArtistOfTheWeek: ArtistOfTheWeekResult
     }
     type Mutation{
         increasePlays(releaseId: String): Stats

@@ -3,9 +3,23 @@ import gql from 'graphql-tag';
 const AOWQuery = gql`
     query getArtistOfTheWeek {
         getArtistOfTheWeek {
-            name
-            imageUrl
-            profileAddress
+            artist{
+                name
+                imageUrl
+                profileAddress
+            }
+            release{
+                id
+                tx
+                title
+                artistName
+                directTipCount
+                directPlayCount
+                description
+                genres
+                trackImg
+                trackUrl
+            }
         }
     }
 `;
