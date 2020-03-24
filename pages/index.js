@@ -10,7 +10,7 @@ import EventsCard from '../components/Cards/EventsCard';
 import LocationCard from '../components/Cards/LocationCard';
 import TrendingCard from '../components/Cards/TrendingCard';
 import TrendingReleasesQuery from '../graphql/query/TrendingReleasesQuery';
-import TopPlaysUpdatedSubscription from '../graphql/subscription/TopPlaysUpdatedSubscription';
+import TrendingListUpdatedSubscription from '../graphql/subscription/TrendingListUpdatedSubscription';
 
 import {Query} from 'react-apollo';
 
@@ -28,15 +28,13 @@ function Home() {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error: {error.message}</p>;
               const more = () => subscribeToMore({
-                document: TopPlaysUpdatedSubscription,
+                document: TrendingListUpdatedSubscription,
                 updateQuery: (prev, {subscriptionData}) => {
-                  //ToDo use trending subscription
-                  // if (!subscriptionData.data.topPlaysUpdated) return prev;
-                  // let release = subscriptionData.data.topPlaysUpdated;
-                  // prev.topPlays.pop();
-                  // return Object.assign({}, prev, {
-                  //   topPlays: [release, ...prev.topPlays]
-                  // });
+                  if (!subscriptionData.data.trendingListUpdated) return prev;
+                  let releases = subscriptionData.data.trendingListUpdated;
+                  return Object.assign({}, prev, {
+                    trendingList: releases
+                  });
                 },
               });
               return (

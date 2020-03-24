@@ -7,6 +7,7 @@ export const typeDefs = gql`
     }
 
     type Release {
+        id: String
         tx: String
         title: String
         link: String
@@ -43,5 +44,6 @@ export const typeDefs = gql`
         playsIncreased: Stats
         recentPlaysUpdated: Release
         topPlaysUpdated: Release
+        trendingListUpdated: [Release]
     }
 `;

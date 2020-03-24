@@ -16,7 +16,7 @@ class TrendingCard extends React.Component {
             <div className="top-tips">
               <div className="track-container">
                 {this.props.data.map(release => (
-                    <Track image="/img/tracks/tracks-1.png" track={release}/>
+                    <Track key={release.tx} image="/img/tracks/tracks-1.png" track={release}/>
                 ))}
                 <div className="card__more">
                   <a href="#" className="card__more-link">See more</a>
