@@ -23,18 +23,6 @@ export const typeDefs = gql`
     }
 
     type Artist {
-        name: String
-        imageUrl: String
-        profileAddress: String
-        releaseCount: Int
-    }
-
-    type ArtistOfTheWeekResult {
-        release: Release
-        artist: Artist
-    }
-
-    type NewArtist {
         artistAddress: String
         description: String
         name: String
@@ -44,13 +32,18 @@ export const typeDefs = gql`
         tipCount: String
     }
 
+    type ArtistOfTheWeekResult {
+        release: Release
+        artist: Artist
+    }
+
     type Query {
         stats: Stats
         recentPlays(limit: Int):[Release]
         topPlays(limit: Int): [Release]
         trendingList(limit: Int): [Release]
         getArtistOfTheWeek: ArtistOfTheWeekResult
-        getNewArtists(limit: Int): [NewArtist]
+        getNewArtists(limit: Int): [Artist]
         getDebuts(limit: Int): [Release]
     }
     type Mutation{

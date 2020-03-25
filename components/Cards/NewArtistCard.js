@@ -27,6 +27,6 @@ export default function NewArtistCard() {
             </div>
           </div>
         </div>
-        < /div>
-          )
-          }
+      </div>
+  );
+}

@@ -27,6 +27,6 @@ export default function DebutsCard() {
             </div>
           </div>
         </div>
-        < /div>
-          )
-          }
+      </div>
+  );
+}

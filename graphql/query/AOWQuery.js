@@ -6,7 +6,7 @@ const AOWQuery = gql`
             artist{
                 name
                 imageUrl
-                profileAddress
+                artistAddress
             }
             release{
                 id
