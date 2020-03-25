@@ -34,12 +34,23 @@ export const typeDefs = gql`
         artist: Artist
     }
 
+    type NewArtist {
+        artistAddress: String
+        description: String
+        name: String
+        imageUrl: String
+        verified: String
+        followers: String
+        tipCount: String
+    }
+
     type Query {
         stats: Stats
         recentPlays(limit: Int):[Release]
         topPlays(limit: Int): [Release]
         trendingList(limit: Int): [Release]
         getArtistOfTheWeek: ArtistOfTheWeekResult
+        getNewArtists(limit: Int): [NewArtist]
     }
     type Mutation{
         increasePlays(releaseId: String): Stats

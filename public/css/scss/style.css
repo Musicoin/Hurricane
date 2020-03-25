@@ -329,6 +329,9 @@ a {
 .new-artist__pic {
   margin-bottom: 16px;
 }
+.new-artist__pic img {
+  border-radius: 24px;
+}
 
 .event {
   display: flex;
