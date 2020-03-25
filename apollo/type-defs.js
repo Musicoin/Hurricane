@@ -51,6 +51,7 @@ export const typeDefs = gql`
         trendingList(limit: Int): [Release]
         getArtistOfTheWeek: ArtistOfTheWeekResult
         getNewArtists(limit: Int): [NewArtist]
+        getDebuts(limit: Int): [Release]
     }
     type Mutation{
         increasePlays(releaseId: String): Stats

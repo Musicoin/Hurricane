@@ -6,6 +6,7 @@ import SocialCard from '../components/Cards/SocialCard';
 import MobileAppCard from '../components/Cards/MobileAppCard';
 import AOWCard from '../components/Cards/AOWCard';
 import NewArtistCard from '../components/Cards/NewArtistCard';
+import DebutsCard from '../components/Cards/DebutsCard';
 import EventsCard from '../components/Cards/EventsCard';
 import LocationCard from '../components/Cards/LocationCard';
 import TrendingCard from '../components/Cards/TrendingCard';
@@ -109,6 +110,7 @@ function Home() {
         <div className="content__container-right">
           <AOWCard/>
           <NewArtistCard/>
+          <DebutsCard/>
           <EventsCard/>
           <LocationCard/>
         </div>
