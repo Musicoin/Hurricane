@@ -23,7 +23,7 @@ export default function DebutsCard() {
 
             </div>
             <div className="card__more">
-              <a href="#" className="card__more-link">See more new debuts</a>
+              <a href="#" className="card__more-link">See more debuts</a>
             </div>
           </div>
         </div>
