@@ -12,7 +12,7 @@ const Layout = props => (
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"/>
         <link rel="stylesheet" href="/css/player.css" />
         <link rel="stylesheet" href="/css/scss/style.css"/>
-        <title>Musicoin - Homepage</title>
+        <title>Musicoin</title>
       </Head>
       <Header/>
       <div id="content">

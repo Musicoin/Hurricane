@@ -8,7 +8,7 @@ function Header() {
       <header id="header">
         <div className="container header__container">
           <div className="header__container-left">
-            <a href="#" className="">
+            <a href="/" className="">
               <img src="/img/musicoin-logo.png" className="logo" alt="Musicoin Brand"/>
             </a>
           </div>
