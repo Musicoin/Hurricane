@@ -8,7 +8,7 @@ const topPlaysUpdatedSubscription = gql`
             artistName
             directTipCount
             directPlayCount
-            description
+            trackDescription
             genres
             trackImg
         }

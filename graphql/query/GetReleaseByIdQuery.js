@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
 
-const recentPlaysUpdatedSubscription = gql`
-    subscription recentPlaysUpdated{
-        recentPlaysUpdated {
+const GetReleaseByIdQuery = gql`
+    query getReleaseById($id: String) {
+        getReleaseById(id: $id) {
+            id
             tx
             title
             artistName
@@ -11,8 +12,9 @@ const recentPlaysUpdatedSubscription = gql`
             trackDescription
             genres
             trackImg
+            trackUrl
         }
     }
 `;
 
-export default recentPlaysUpdatedSubscription;
+export default GetReleaseByIdQuery;

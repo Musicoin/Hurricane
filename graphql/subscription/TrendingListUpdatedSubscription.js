@@ -9,7 +9,7 @@ const trendingListUpdatedSubscription = gql`
             artistName
             directTipCount
             directPlayCount
-            description
+            trackDescription
             genres
             trackImg
             trackUrl

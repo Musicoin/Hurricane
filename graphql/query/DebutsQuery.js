@@ -9,7 +9,7 @@ const GetDebuts = gql`
             artistName
             directTipCount
             directPlayCount
-            description
+            trackDescription
             genres
             trackImg
             trackUrl

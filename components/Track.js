@@ -1,24 +1,28 @@
 import ChangeCurrentTrack from '../graphql/mutation/local/ChangeCurrentTrack';
 import {useMutation} from '@apollo/react-hooks';
+import Link from 'next/link';
 
 const Track = (props) => {
-  const [changeCurrentTrack] = useMutation(ChangeCurrentTrack, {variables:{track: props.track}});
-
+  const [changeCurrentTrack] = useMutation(ChangeCurrentTrack, {variables: {track: props.track}});
   return (
       <div className="track">
-        <div className="track__left">
-          <div className="track__pic-container">
-            <img src={props.image} height="34" width="34" className="track__pic" alt=""/>
-            <div className="track__pic-overlay">
-              <div className="track__play"><img src="/img/icons/play.png" alt=""/></div>
+        <Link href={`/track/${props.track.id}`}>
+          <a>
+          <div className="track__left">
+            <div className="track__pic-container">
+              <img src={props.image} height="34" width="34" className="track__pic" alt=""/>
+              <div className="track__pic-overlay">
+                <div className="track__play"><img src="/img/icons/play.png" alt=""/></div>
+              </div>
+            </div>
+            <div className="track__attr">
+              <p className="track__title">{props.track.title}</p>
+              <p className="track__artist">{props.track.artistName}
+                <span className="track__genre">{props.track.genres.join(', ')}</span></p>
             </div>
           </div>
-          <div className="track__attr">
-            <p className="track__title">{props.track.title}</p>
-            <p className="track__artist">{props.track.artistName}
-              <span className="track__genre">{props.track.genres.join(', ')}</span></p>
-          </div>
-        </div>
+          </a>
+        </Link>
         <div className="track__right">
           <div className="track__stats">
             <img src="/img/icons/like.png" className="like" alt=""/><p className="track__like">{props.track.directPlayCount ? props.track.directPlayCount : 0}</p>

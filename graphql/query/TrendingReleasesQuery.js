@@ -3,12 +3,13 @@ import gql from 'graphql-tag';
 const TrendingReleasesQuery = gql`
     query trendingList($limit:Int) {
         trendingList(limit: $limit) {
+            id
             tx
             title
             artistName
             directTipCount
             directPlayCount
-            description
+            trackDescription
             genres
             trackImg
             trackUrl

@@ -15,7 +15,7 @@ const AOWQuery = gql`
                 artistName
                 directTipCount
                 directPlayCount
-                description
+                trackDescription
                 genres
                 trackImg
                 trackUrl

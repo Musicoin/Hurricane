@@ -242,6 +242,7 @@ a {
 }
 .track__title {
   margin-bottom: 0px;
+  color: black;
 }
 .track__artist {
   white-space: nowrap;
