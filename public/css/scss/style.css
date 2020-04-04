@@ -201,7 +201,6 @@ a {
 }
 .track__pic {
   display: block;
-  height: auto;
 }
 .track__pic-container {
   position: relative;

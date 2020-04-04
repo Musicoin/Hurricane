@@ -10,7 +10,7 @@ const Track = (props) => {
           <a>
           <div className="track__left">
             <div className="track__pic-container">
-              <img src={props.track.trackImg} height="34" width="34" className="track__pic" alt=""/>
+              <img src={props.track.trackImg} height="40" width="40" className="track__pic" alt=""/>
               <div className="track__pic-overlay">
                 <div className="track__play"><img src="/img/icons/play.png" alt=""/></div>
               </div>
