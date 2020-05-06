@@ -4,6 +4,7 @@ const GetReleaseByIdQuery = gql`
     query getReleaseById($id: String) {
         getReleaseById(id: $id) {
             id
+            artistId
             tx
             title
             artistName

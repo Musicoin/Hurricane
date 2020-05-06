@@ -8,6 +8,7 @@ export const typeDefs = gql`
 
     type Release {
         id: String
+        artistId: String
         tx: String
         title: String
         link: String
@@ -30,6 +31,7 @@ export const typeDefs = gql`
         verified: String
         followers: String
         tipCount: String
+        artistTracks: [Release]
     }
 
     type ArtistOfTheWeekResult {
@@ -46,6 +48,7 @@ export const typeDefs = gql`
         getNewArtists(limit: Int): [Artist]
         getDebuts(limit: Int): [Release]
         getReleaseById(id: String): Release
+        getArtist(id: String): Artist
     }
     type Mutation{
         increasePlays(releaseId: String): Stats
