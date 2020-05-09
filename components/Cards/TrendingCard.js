@@ -10,7 +10,7 @@ class TrendingCard extends React.Component {
     return (
         <div className="card">
           <div className="card__title">
-            <p>Trending</p>
+            <p>Trending (web monetization test)</p>
           </div>
           <div className="card__content">
             <div className="top-tips">
