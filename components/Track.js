@@ -43,7 +43,7 @@ const Track = (props) => {
             <img src="/img/icons/tip.png" className="tips" alt=""/><p className="track__tips">{props.track.directTipCount ? props.track.directTipCount : 0}</p>
           </div>
           <span className="track__dot"
-                onClick={()=>changeCurrentTrack}>
+                onClick={()=>changeCurrentTrack()}>
           {/*<img src="/img/icons/icon-dot.png" alt=""/></span>*/}
             <img src="/img/icons/play-small.png" alt=""/></span>
           {/*<div className="track__stats">*/}
