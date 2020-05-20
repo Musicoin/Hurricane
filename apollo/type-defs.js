@@ -38,6 +38,11 @@ export const typeDefs = gql`
         release: Release
         artist: Artist
     }
+    
+    type WMVerification{
+        verified: Boolean
+        token: String
+    }
 
     type Query {
         stats: Stats
@@ -49,6 +54,7 @@ export const typeDefs = gql`
         getDebuts(limit: Int): [Release]
         getReleaseById(id: String): Release
         getArtist(id: String): Artist
+        verifyWebMonetization(requestId: String): WMVerification
     }
     type Mutation{
         increasePlays(releaseId: String): Stats
