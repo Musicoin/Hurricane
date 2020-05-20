@@ -4,11 +4,11 @@ import ChangeCurrentTrack from '../../graphql/mutation/local/ChangeCurrentTrack'
 
 export default function AOWCard() {
   const {loading, error, data} = useQuery(AOWQuery);
+  const [changeCurrentTrack] = useMutation(ChangeCurrentTrack);
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
   const aow = data.getArtistOfTheWeek;
-  const [changeCurrentTrack] = useMutation(ChangeCurrentTrack, {variables:{track: aow.release}});
 
   return (
       <div className="card">
@@ -22,7 +22,7 @@ export default function AOWCard() {
                 <img src={aow.artist.imageUrl} alt="" className="aow__pic-file"/>
               </div>
               <div className="aow__attr">
-                <div className="aow__attr--player" onClick={changeCurrentTrack}>
+                <div className="aow__attr--player" onClick={()=>changeCurrentTrack({variables: {track: aow.release}})}>
                   <img src="/img/icons/play.png" alt=""/>
                 </div>
                 <div className="aow__attr-text">

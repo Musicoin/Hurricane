@@ -1,16 +1,15 @@
-import {withApollo} from '../../apollo/client';
-
 import Layout from '../../components/MyLayout';
 import GetArtistQuery from '../../graphql/query/GetArtistQuery';
 
-import {withRouter} from 'next/router';
+import {useRouter} from 'next/router';
 
 import {Query} from 'react-apollo';
 import React from 'react';
 import Track from '../../components/Track';
 
-function Artist(props) {
-  const {artistId} = props.router.query;
+const Artist = (props) => {
+  const router = useRouter();
+  const {artistId} = router.query;
 
   return (
       <Query query={GetArtistQuery} variables={{id: artistId}}>
@@ -21,7 +20,7 @@ function Artist(props) {
             let artist = data.getArtist;
 
             return (
-                <Layout>
+                <>
                   <div>
                     <p>{artist.name}</p>
                   </div>
@@ -55,12 +54,13 @@ function Artist(props) {
                       </div>
                     </div>
                   </div>
-                </Layout>
+                </>
             );
           }
         }}
       </Query>
   );
-}
+};
 
-export default withRouter(withApollo(Artist));
+Artist.Layout = Layout;
+export default Artist;

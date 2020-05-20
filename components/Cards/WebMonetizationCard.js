@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {useMonetizationCounter, initGlobalWebMonetizationState, IfWebMonetized, IfNotWebMonetized, IfWebMonetizationPending} from 'react-web-monetization';
-import {withApollo} from '../../apollo/client';
 import {useLazyQuery} from '@apollo/react-hooks';
 import VerifyWebMonetizationQuery from '../../graphql/query/VerifyWebMonetizationQuery';
 
@@ -49,4 +48,4 @@ function WebMonetizationCard() {
   );
 }
 
-export default withApollo(WebMonetizationCard);
+export default WebMonetizationCard;

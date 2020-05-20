@@ -2,13 +2,18 @@ import StatsQuery from '../graphql/query/StatsQuery';
 import PlaysIncreasedSubscription from '../graphql/subscription/PlaysIncreasedSubscription';
 import {Query} from 'react-apollo';
 import StatsComponent from './Stats';
+import {useRouter} from 'next/router';
 
 function Header() {
+  const router = useRouter();
   return (
       <header id="header">
         <div className="container header__container">
           <div className="header__container-left">
-            <a href="/" className="">
+            <a href="" onClick={e => {
+              e.preventDefault();
+              router.push('/', '/');
+            }}>
               <img src="/img/musicoin-logo.png" className="logo" alt="Musicoin Brand"/>
             </a>
           </div>

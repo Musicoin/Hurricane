@@ -1,5 +1,3 @@
-import {withApollo} from '../apollo/client';
-
 import Layout from '../components/MyLayout';
 import MenuCard from '../components/Cards/MenuCard';
 import SocialCard from '../components/Cards/SocialCard';
@@ -15,9 +13,9 @@ import TrendingListUpdatedSubscription from '../graphql/subscription/TrendingLis
 
 import {Query} from 'react-apollo';
 
-function Home() {
+const Home = () => {
   return (
-      <Layout>
+      <>
         <div className="content__container-left">
           <MenuCard/>
           <SocialCard/>
@@ -34,7 +32,7 @@ function Home() {
                   if (!subscriptionData.data.trendingListUpdated) return prev;
                   let releases = subscriptionData.data.trendingListUpdated;
                   return Object.assign({}, prev, {
-                    trendingList: releases
+                    trendingList: releases,
                   });
                 },
               });
@@ -114,8 +112,10 @@ function Home() {
           <EventsCard/>
           <LocationCard/>
         </div>
-      </Layout>
+      </>
   );
 }
 
-export default withApollo(Home);
+Home.Layout = Layout;
+
+export default Home;
