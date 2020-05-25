@@ -18,10 +18,14 @@ function WebMonetizationCard() {
       }
     }
 
-    document.monetization.addEventListener('monetizationstart', startMonetization);
+    if (document.monetization) {
+      document.monetization.addEventListener('monetizationstart', startMonetization);
+    }
 
     return function cleanup() {
-      document.monetization.removeEventListener('monetizationstart', startMonetization);
+      if (document.monetization) {
+        document.monetization.removeEventListener('monetizationstart', startMonetization);
+      }
     };
   }, []);
 
