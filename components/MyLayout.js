@@ -2,6 +2,8 @@ import Header from './Header';
 import Player from './Player';
 import Head from 'next/head';
 import WebMonetizationCard from './Cards/WebMonetizationCard';
+import {ThemeProvider} from 'styled-components';
+import {theme} from '../util/Constants';
 
 const Layout = props => (
     <div>
@@ -16,14 +18,16 @@ const Layout = props => (
         <title>Musicoin</title>
         <meta name="monetization" content="$coil.xrptipbot.com/6b792aec-9004-44dd-998f-5bc793a20f46"/>
       </Head>
-      <Header/>
-      <WebMonetizationCard/>
-      <div id="content">
-        <div className="container content__container">
-          {props.children}
+      <ThemeProvider theme={theme}>
+        <Header/>
+        <WebMonetizationCard/>
+        <div id="content">
+          <div className="container content__container">
+            {props.children}
+          </div>
         </div>
-      </div>
-      <Player/>
+        <Player/>
+      </ThemeProvider>
     </div>
 );
 

@@ -20,8 +20,8 @@ function Header() {
           <div className="header__container-middle">
             <Query query={StatsQuery}>
               {({loading, error, data, subscribeToMore}) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error: {error.message}</p>;
+                if (loading) return (<p>Loading...</p>);
+                if (error) return (<p>Error: {error.message}</p>);
                 const more = () => subscribeToMore({
                   document: PlaysIncreasedSubscription,
                   updateQuery: (prev, {subscriptionData}) => {

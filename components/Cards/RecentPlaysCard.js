@@ -1,5 +1,6 @@
 import React from 'react';
 import Track from '../Track';
+import Card, {More, Link} from '../Common/Card';
 
 class RecentlyPlayedCard extends React.Component {
   componentDidMount() {
@@ -8,28 +9,18 @@ class RecentlyPlayedCard extends React.Component {
 
   render() {
     return (
-        <div className="card">
-          <div className="card__title">
-            <p>Recently Played</p>
-            <div className="card__filter">
-              <a href="#" className="card__filter-link active">Day |</a>
-              <a href="#" className="card__filter-link">Week |</a>
-              <a href="#" className="card__filter-link">Month </a>
+        <Card title="Recently Played">
+          <div className="top-tips">
+            <div className="track-container">
+              {this.props.data.map(release => (
+                  <Track image="/img/tracks/tracks-1.png" track={release}/>
+              ))}
+              <More>
+                <Link href="#">See more</Link>
+              </More>
             </div>
           </div>
-          <div className="card__content">
-            <div className="top-tips">
-              <div className="track-container">
-                {this.props.data.map(release => (
-                    <Track image="/img/tracks/tracks-1.png" track={release}/>
-                ))}
-                <div className="card__more">
-                  <a href="#" className="card__more-link">See more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </Card>
     );
   }
 }

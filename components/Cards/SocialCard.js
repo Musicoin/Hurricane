@@ -1,10 +1,8 @@
+import Card from '../Common/Card';
+
 export default function SocialCard(){
   return(
-      <div className="card">
-        <div className="card__title">
-          <p>Social</p>
-        </div>
-        <div className="card__content">
+      <Card title="Social">
           <div className="social">
             <ul className="social__list">
               <a href="https://twitter.com/musicoins">
@@ -27,7 +25,6 @@ export default function SocialCard(){
               </a>
             </ul>
           </div>
-        </div>
-      </div>
+      </Card>
   )
 }

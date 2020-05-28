@@ -1,19 +1,15 @@
-export default function MenuCard(){
-  return(
-      <div className="card">
-        <div className="card__title">
-          <p>Location</p>
-        </div>
-        <div className="card__content">
-          <div className="location">
-            <div className="location__content">
+import Card, {More, Link} from '../Common/Card';
 
-            </div>
-            <div className="card__more">
-              <a href="#" className="card__more-link">See more events</a>
-            </div>
+export default function MenuCard() {
+  return (
+      <Card title="Location">
+        <div className="location">
+          <div className="location__content">
           </div>
+          <More>
+            <Link href="#">See more events</Link>
+          </More>
         </div>
-      </div>
-  )
+      </Card>
+  );
 }
