@@ -18,8 +18,8 @@ const Home = () => {
       <>
         <div className="content__container-left">
           <MenuCard/>
-          <SocialCard/>
-          <MobileAppCard/>
+        {/*  <SocialCard/>*/}
+        {/*  <MobileAppCard/>*/}
         </div>
         <div className="content__container-middle">
           <Query query={TrendingReleasesQuery} variables={{limit: 20}}>
@@ -105,13 +105,13 @@ const Home = () => {
           {/*    </div>*/}
           {/*  </div>*/}
         </div>
-        <div className="content__container-right">
-          <AOWCard/>
-          <NewArtistCard/>
-          <DebutsCard/>
-          <EventsCard/>
-          <LocationCard/>
-        </div>
+        {/*<div className="content__container-right">*/}
+        {/*  <AOWCard/>*/}
+        {/*  <NewArtistCard/>*/}
+        {/*  <DebutsCard/>*/}
+        {/*  <EventsCard/>*/}
+        {/*  <LocationCard/>*/}
+        {/*</div>*/}
       </>
   );
 }
