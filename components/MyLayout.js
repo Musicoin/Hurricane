@@ -2,8 +2,8 @@ import Header from './Header';
 import Player from './Player';
 import Head from 'next/head';
 import WebMonetizationCard from './Cards/WebMonetizationCard';
-import {ThemeProvider} from 'styled-components';
 import {theme} from '../util/Constants';
+import {Grommet, Box} from 'grommet';
 
 const Layout = props => (
     <div>
@@ -14,20 +14,18 @@ const Layout = props => (
         <link rel="stylesheet" type="text/css" href="/css/cssreset-min.css"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"/>
         <link rel="stylesheet" href="/css/player.css"/>
-        <link rel="stylesheet" href="/css/scss/style.css"/>
+        {/*<link rel="stylesheet" href="/css/scss/style.css"/>*/}
         <title>Musicoin</title>
         <meta name="monetization" content="$coil.xrptipbot.com/6b792aec-9004-44dd-998f-5bc793a20f46"/>
       </Head>
-      <ThemeProvider theme={theme}>
-        <Header/>
-        <WebMonetizationCard/>
-        <div id="content">
-          <div className="container content__container">
-            {props.children}
-          </div>
-        </div>
+      <Grommet theme={theme}>
+        <Box margin={{'bottom': '100px'}} alignContent="around">
+          <Header/>
+          <WebMonetizationCard/>
+          {props.children}
+        </Box>
         <Player/>
-      </ThemeProvider>
+      </Grommet>
     </div>
 );
 

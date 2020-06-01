@@ -7,6 +7,7 @@ export const Button = styled.a`
     font-size: ${props => props.theme.em(14, props.theme.baseFontSize)};
     font-weight: 500;
     box-sizing: border-box;
+    text-decoration: none;
 `;
 
 export const PrimaryButton = styled(Button)`

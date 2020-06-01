@@ -7,7 +7,7 @@ const Stats = styled.h2`
     font-weight: bold;
     color: #333;
     >span {
-      color: ${props => props.theme.brandColor};
+      color: ${props => props.theme.global.colors.brand};
     }
 `;
 

@@ -5,6 +5,7 @@ import StatsComponent from './Stats';
 import {useRouter} from 'next/router';
 import styled from 'styled-components';
 import {PrimaryButton, SecondaryButton} from './Common/Button';
+import {Box} from 'grommet';
 
 const Wrapper = styled.div`
     display: flex;
@@ -46,8 +47,7 @@ const Menu = styled.ul`
 function Header() {
   const router = useRouter();
   return (
-      <header id="header">
-        <Container>
+        <Box align="center" alignSelf="center" width="1200px" direction="row" alignContent="center" justify="between" height="64px" background="white">
           <Left>
             <a href="" onClick={e => {
               e.preventDefault();
@@ -81,8 +81,7 @@ function Header() {
               <li><SecondaryButton href="#"><img height="12" width="12" src="/img/icons/coil.png" /> Sign in with Coil</SecondaryButton></li>
             </Menu>
           </Right>
-        </Container>
-      </header>
+        </Box>
   );
 
 }

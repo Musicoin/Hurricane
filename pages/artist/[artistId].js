@@ -7,6 +7,18 @@ import {Query} from 'react-apollo';
 import React from 'react';
 import Track from '../../components/Track';
 
+import {Avatar, Box, Tab, Tabs} from 'grommet';
+import styled from 'styled-components';
+import {Container} from '../../components/Common/Layout';
+
+import {Heading} from 'grommet';
+
+const Header = styled.div`
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-image: linear-gradient(#F2D099, #F9F9F9);
+`;
+
 const Artist = (props) => {
   const router = useRouter();
   const {artistId} = router.query;
@@ -21,39 +33,34 @@ const Artist = (props) => {
 
             return (
                 <>
-                  <div>
-                    <p>{artist.name}</p>
-                  </div>
-                  <div className="content__container-middle">
-                    <div className="card">
-                      <div className="card__title">
-                        <p>Trending</p>
-                      </div>
-                      <div className="card__content">
-                        <div className="top-tips">
-                          <div className="track-container">
-                            {artist.artistTracks.map(release => (
-                                <Track key={release.tx} image="/img/tracks/tracks-1.png" track={release}/>
-                            ))}
-                            <div className="card__more">
-                              <a href="#" className="card__more-link">See more</a>
+                  <Box basis="full">
+                    <Header>
+                      <Container>
+                        <Avatar src={artist.imageUrl} size="184px"/>
+                      </Container>
+                    </Header>
+                    <Container>
+                      <Tabs justify="start">
+                        <Tab title="Tracks">
+                          <Box>
+                            <Heading level="3" margin={{'bottom': '12px'}}>Tracks</Heading>
+                            <div>
+                              {artist.artistTracks.map(release => (
+                                  <Track key={release.tx}track={release}/>
+                              ))}
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="content__container-right">
-                    <div className="card">
-                      <div className="card__title">
-                        <p>More info</p>
-                      </div>
-                      <div className="card__content">
-                        <p>Followers: {artist.followers}</p>
-                        <p>Tips: {artist.tipCount}</p>
-                      </div>
-                    </div>
-                  </div>
+                          </Box>
+                        </Tab>
+                        <Tab title="About">
+                          <Box>
+                            <Heading level="3" margin={{'bottom': '12px'}}>About</Heading>
+                            <p>{artist.description}</p>
+                          </Box>
+                        </Tab>
+                      </Tabs>
+                    </Container>
+                    <hr/>
+                  </Box>
                 </>
             );
           }

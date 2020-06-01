@@ -1,43 +1,68 @@
+import React, {useEffect} from 'react';
 import Layout from '../../components/MyLayout';
 import GetReleaseByIdQuery from '../../graphql/query/GetReleaseByIdQuery';
 
 import {useRouter} from 'next/router';
+import {useLazyQuery} from '@apollo/react-hooks';
+import styled from 'styled-components';
+import {Box,Tab, Tabs, Image} from 'grommet';
+import {Container} from '../../components/Common/Layout';
+import GetArtistQuery from '../../graphql/query/GetArtistQuery';
+import Track from '../../components/Track';
 
-import {Query} from 'react-apollo';
-import AudioPlayer from 'react-h5-audio-player';
-import React from 'react';
+const Header = styled.div`
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-image: linear-gradient(#F2D099, #F9F9F9);
+`;
 
-const Track = (props) => {
+const TrackPage = (props) => {
   const router = useRouter();
   const {trackId} = router.query;
+  const [getArtist, {called: artistCalled, loading: artistLoading, data: artistData}] = useLazyQuery(GetArtistQuery);
+  const [getTrack, {called, loading, data, error}] = useLazyQuery(GetReleaseByIdQuery, {
+    variables: {id: trackId},
+    onCompleted: data => {
+      getArtist({variables: {id: data.getReleaseById.artistId}});
+    },
+  });
 
-  return (
-      <div className="content__container-middle">
-        <Query query={GetReleaseByIdQuery} variables={{id: trackId}}>
-          {({loading, error, data}) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error: {error.message}</p>;
-            if (data && data.getReleaseById) {
-              let release = data.getReleaseById;
-              let trackInfo = release.title + ' - ' + release.artistName;
-              return (
-                  <div style={{display: 'flex', flexDirection: 'row', alignItems: 'flex-end'}}>
-                    <img src={release.trackImg} height="300" width="300" className="track__pic" alt=""/>
-                    <AudioPlayer
-                        src={release.trackUrl}
-                        controls
-                        style={{position: 'relative', height: 150}}
-                        listenInterval={1000}
-                        footer={trackInfo}
-                    />
+  useEffect(() => {
+    getTrack();
+  }, []);
+
+  if (!called || loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (data && data.getReleaseById) {
+    let release = data.getReleaseById;
+    return (
+        <Box basis="full">
+          <Header>
+            <Container>
+              <Image height="184px" width="184px" src={release.trackImg} size="184px"/>
+            </Container>
+          </Header>
+          <Container>
+            <Tabs justify="start">
+              <Tab title="Related Tracks">
+                <Box>
+                  {!artistCalled || artistLoading && <p>Loading...</p>}
+                  {(artistData && artistData.getArtist) &&
+                  <div>
+                    {artistData.getArtist.artistTracks.map(release => (
+                        <Track key={release.tx} track={release}/>
+                    ))}
                   </div>
-              );
-            }
-
-          }}
-        </Query>
-      </div>
-  );
+                  }
+                </Box>
+              </Tab>
+            </Tabs>
+          </Container>
+          <hr/>
+        </Box>
+    );
+  }
 };
-Track.Layout = Layout;
-export default Track;
+
+TrackPage.Layout = Layout;
+export default TrackPage;
