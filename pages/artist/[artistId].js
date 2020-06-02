@@ -8,16 +8,9 @@ import React from 'react';
 import Track from '../../components/Track';
 
 import {Avatar, Box, Button, Tab, Tabs, Text} from 'grommet';
-import styled from 'styled-components';
 
 import {Heading} from 'grommet';
 import {ShareOption, Group} from 'grommet-icons';
-
-const Header = styled.div`
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-image: linear-gradient(#F2D099, #F9F9F9);
-`;
 
 const Artist = (props) => {
   const router = useRouter();

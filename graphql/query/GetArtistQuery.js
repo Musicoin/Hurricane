@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const GetArtistQuery = gql`
-    query trendingList($id:String) {
+    query getArtist($id:String) {
         getArtist(id: $id) {
             artistAddress
             description
@@ -12,6 +12,7 @@ const GetArtistQuery = gql`
             tipCount
             artistTracks {
                 id
+                artistId
                 tx
                 title
                 artistName
