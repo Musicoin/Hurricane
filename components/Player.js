@@ -1,12 +1,12 @@
 import React from 'react';
-import AudioPlayer from 'react-h5-audio-player';
+import AudioPlayer, {RHAP_UI} from 'react-h5-audio-player';
 import CurrentTrackQuery from '../graphql/query/local/CurrentTrackQuery';
 import IncreasePlaysMutation from '../graphql/mutation/IncreasePlaysMutation';
 import {Query} from 'react-apollo';
 import {graphql} from 'react-apollo';
 import StatsQuery from '../graphql/query/StatsQuery';
 import {PlayFill, PauseFill} from 'grommet-icons';
-import {Box} from 'grommet';
+import {Box, Image, Text} from 'grommet';
 
 let secondsCount = 0;
 let lastTrack;
@@ -44,21 +44,29 @@ class Player extends React.Component {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error: {error.message}</p>;
               if (data && data.currentTrack) {
-                let trackInfo = data.currentTrack.title + ' - ' + data.currentTrack.artistName;
+                let track = data.currentTrack;
                 return (
                     <AudioPlayer
-                        src={data.currentTrack.trackUrl}
+                        src={track.trackUrl}
                         controls
                         listenInterval={1000}
-                        onListen={() => this.listen(data.currentTrack)}
+                        onListen={() => this.listen(track)}
                         autoPlay
-                        footer={trackInfo}
                         customIcons={
                           {
-                            play: <Box round="full" pad="8px;" align="center" pad={{top: "10px", bottom: "10px", right: "8px", left: "12px"}} background="linear-gradient(to top right, #6A82FB, #FC5C7D)"><PlayFill color="white" size="20px;"/></Box>,
-                            pause: <Box round="full" pad={{top: "10px", bottom: "10px", right: "8px", left: "8px"}} align="center" background="linear-gradient(to top right, #6A82FB, #FC5C7D)"><PauseFill color="white" size="20px;"/></Box>,
+                            play: <Box round="full" pad="8px;" align="center" pad={{top: '10px', bottom: '10px', right: '8px', left: '12px'}} background="linear-gradient(to top right, #6A82FB, #FC5C7D)"><PlayFill color="white" size="20px;"/></Box>,
+                            pause: <Box round="full" pad={{top: '10px', bottom: '10px', right: '8px', left: '8px'}} align="center" background="linear-gradient(to top right, #6A82FB, #FC5C7D)"><PauseFill color="white" size="20px;"/></Box>,
                           }
                         }
+                        customAdditionalControls={[
+                          <Box direction="row" gap="small">
+                            <Image src={track.trackImg} height="40" width="40" />
+                            <Box>
+                              <Text size="16px">{track.title}</Text>
+                              <Text color="#8899A6" size="14px">{track.artistName}</Text>
+                            </Box>
+                          </Box>
+                        ]}
                     />);
               } else {
                 return null;
