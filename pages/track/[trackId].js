@@ -97,7 +97,6 @@ const TrackPage = (props) => {
               </Tab>
             </Tabs>
           </Box>
-          <hr/>
         </Box>
     );
   }
