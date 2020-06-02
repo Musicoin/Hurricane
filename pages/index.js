@@ -1,21 +1,15 @@
 import Layout from '../components/MyLayout';
-import MenuCard from '../components/Cards/MenuCard';
-import SocialCard from '../components/Cards/SocialCard';
-import MobileAppCard from '../components/Cards/MobileAppCard';
-import AOWCard from '../components/Cards/AOWCard';
-import NewArtistCard from '../components/Cards/NewArtistCard';
-import DebutsCard from '../components/Cards/DebutsCard';
-import EventsCard from '../components/Cards/EventsCard';
-import LocationCard from '../components/Cards/LocationCard';
 import TrendingCard from '../components/Cards/TrendingCard';
 import TrendingReleasesQuery from '../graphql/query/TrendingReleasesQuery';
 import TrendingListUpdatedSubscription from '../graphql/subscription/TrendingListUpdatedSubscription';
 
 import {Query} from 'react-apollo';
 
-import {Box, Grid} from 'grommet';
+import {Box, Heading, Image, Text} from 'grommet';
+import {useRouter} from 'next/router';
 
 const Home = () => {
+  const router = useRouter();
   return (
       <Box margin={{'top': '10px'}} alignSelf="center" width="900px">
         <Query query={TrendingReleasesQuery} variables={{limit: 20}}>
@@ -34,6 +28,21 @@ const Home = () => {
             });
             return (
                 <Box>
+                  <Heading margin={{vertical: 'medium'}} level={2}>Recommendation list</Heading>
+                  <Box direction="row" justify="between" margin={{bottom: 'medium'}}>
+                    {data.trendingList.slice(0, 5).map(track =>
+                        <Box direction="column" align="center" width="168px" gap="xsmall" onClick={e => {
+                          e.preventDefault();
+                          router.push('/track/[trackId]', `/track/${track.id}`);
+                        }}>
+                          <Image width="168" height="168" src={track.trackImg}/>
+                          <Box>
+                            <Text size="16px" textAlign="center">{track.title}</Text>
+                            <Text size="14px" textAlign="center" color="#8897A2">{track.artistName}</Text>
+                          </Box>
+                        </Box>,
+                    )}
+                  </Box>
                   <TrendingCard data={data.trendingList} subscribeToMore={more}/>
                 </Box>
             );

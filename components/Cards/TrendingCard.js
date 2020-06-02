@@ -9,7 +9,7 @@ class TrendingCard extends React.Component {
 
   render() {
     return (
-        <Card title="Recommendation list">
+        <Card>
           <div className="top-tips">
             <div className="track-container">
               {this.props.data.map(release => (
