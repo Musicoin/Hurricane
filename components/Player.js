@@ -5,6 +5,8 @@ import IncreasePlaysMutation from '../graphql/mutation/IncreasePlaysMutation';
 import {Query} from 'react-apollo';
 import {graphql} from 'react-apollo';
 import StatsQuery from '../graphql/query/StatsQuery';
+import {PlayFill, PauseFill} from 'grommet-icons';
+import {Box} from 'grommet';
 
 let secondsCount = 0;
 let lastTrack;
@@ -12,10 +14,10 @@ let lastTrack;
 class Player extends React.Component {
 
   listen(track) {
-    if(lastTrack != track) {
+    if (lastTrack != track) {
       lastTrack = track;
       secondsCount = 1;
-    }else{
+    } else {
       secondsCount++;
     }
     console.log(secondsCount + ' seconds played');
@@ -51,6 +53,12 @@ class Player extends React.Component {
                         onListen={() => this.listen(data.currentTrack)}
                         autoPlay
                         footer={trackInfo}
+                        customIcons={
+                          {
+                            play: <Box round="full" pad="8px;" align="center" pad={{top: "10px", bottom: "10px", right: "8px", left: "12px"}} background="linear-gradient(to top right, #6A82FB, #FC5C7D)"><PlayFill color="white" size="20px;"/></Box>,
+                            pause: <Box round="full" pad={{top: "10px", bottom: "10px", right: "8px", left: "8px"}} align="center" background="linear-gradient(to top right, #6A82FB, #FC5C7D)"><PauseFill color="white" size="20px;"/></Box>,
+                          }
+                        }
                     />);
               } else {
                 return null;

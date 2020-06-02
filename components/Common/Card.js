@@ -44,7 +44,8 @@ export const More = styled.div`
 `;
 
 export const Link = styled.a`
-    color: ${props => props.theme.linkColor};
+    color: ${props => props.theme.global.colors.brand};
+    text-decoration: none;
 `;
 
 export default function Card(props) {

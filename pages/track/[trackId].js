@@ -45,8 +45,8 @@ const TrackPage = (props) => {
               <Image height="184px" width="184px" src={release.trackImg}/>
               <Box height="184px" direction="column" justify="between">
                 <Box direction="row" gap="small">
-                  <Box round="full" background="linear-gradient(to top right, #6A82FB, #FC5C7D)">
-                    <Button hoverIndicator icon={<PlayFill color="white"/>} onClick={() => changeCurrentTrack({variables: {track: release}})}/>
+                  <Box round="full" background="linear-gradient(to top right, #6A82FB, #FC5C7D)" pad={{top: "12px", bottom: "10px", right: "10px", left: "14px"}}>
+                    <Button plain hoverIndicator icon={<PlayFill color="white"/>} onClick={() => changeCurrentTrack({variables: {track: release}})}/>
                   </Box>
                   <Text weight="bold" size="40px">{release.title}</Text>
                 </Box>

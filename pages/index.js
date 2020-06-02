@@ -17,43 +17,28 @@ import {Box, Grid} from 'grommet';
 
 const Home = () => {
   return (
-      <Box margin={{"top": "10px"}} alignSelf="center" width="1200px">
-        <Grid
-            rows={['xxsmall', 'medium', 'xsmall']}
-            columns={['1/3', '2/3']}
-            areas={[
-              ['menu', 'tracks'],
-            ]}
-            gap="medium"
-        >
-          <Box gridArea="menu">
-            <MenuCard/>
-          </Box>
-          <Box gridArea="tracks">
-            {/*  <SocialCard/>*/}
-            {/*  <MobileAppCard/>*/}
-            <Query query={TrendingReleasesQuery} variables={{limit: 20}}>
-              {({loading, error, data, subscribeToMore}) => {
-                if (loading) return (<p>Loading...</p>);
-                if (error) return (<p>Error: {error.message}</p>);
-                const more = () => subscribeToMore({
-                  document: TrendingListUpdatedSubscription,
-                  updateQuery: (prev, {subscriptionData}) => {
-                    if (!subscriptionData.data.trendingListUpdated) return prev;
-                    let releases = subscriptionData.data.trendingListUpdated;
-                    return Object.assign({}, prev, {
-                      trendingList: releases,
-                    });
-                  },
+      <Box margin={{'top': '10px'}} alignSelf="center" width="900px">
+        <Query query={TrendingReleasesQuery} variables={{limit: 20}}>
+          {({loading, error, data, subscribeToMore}) => {
+            if (loading) return (<p>Loading...</p>);
+            if (error) return (<p>Error: {error.message}</p>);
+            const more = () => subscribeToMore({
+              document: TrendingListUpdatedSubscription,
+              updateQuery: (prev, {subscriptionData}) => {
+                if (!subscriptionData.data.trendingListUpdated) return prev;
+                let releases = subscriptionData.data.trendingListUpdated;
+                return Object.assign({}, prev, {
+                  trendingList: releases,
                 });
-                return (
-                    <TrendingCard data={data.trendingList} subscribeToMore={more}/>
-                );
-
-              }}
-            </Query>
-          </Box>
-        </Grid>
+              },
+            });
+            return (
+                <Box>
+                  <TrendingCard data={data.trendingList} subscribeToMore={more}/>
+                </Box>
+            );
+          }}
+        </Query>
       </Box>
   );
 };
