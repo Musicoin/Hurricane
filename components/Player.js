@@ -8,6 +8,8 @@ import StatsQuery from '../graphql/query/StatsQuery';
 import {PlayFill, PauseFill} from 'grommet-icons';
 import {Box, Image, Text} from 'grommet';
 
+import Loading from './Common/Loading';
+
 let secondsCount = 0;
 let lastTrack;
 
@@ -41,7 +43,7 @@ class Player extends React.Component {
         <div>
           <Query query={CurrentTrackQuery}>
             {({loading, error, data}) => {
-              if (loading) return <p>Loading...</p>;
+              if (loading) return <Loading small/>;
               if (error) return <p>Error: {error.message}</p>;
               if (data && data.currentTrack) {
                 let track = data.currentTrack;
@@ -60,12 +62,12 @@ class Player extends React.Component {
                         }
                         customAdditionalControls={[
                           <Box direction="row" gap="small">
-                            <Image src={track.trackImg} height="40" width="40" />
+                            <Image src={track.trackImg} height="40" width="40"/>
                             <Box>
                               <Text size="16px">{track.title}</Text>
                               <Text color="#8899A6" size="14px">{track.artistName}</Text>
                             </Box>
-                          </Box>
+                          </Box>,
                         ]}
                     />);
               } else {

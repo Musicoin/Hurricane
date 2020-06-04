@@ -9,6 +9,15 @@ export const theme = {
       height: 1,
     },
     size: 'xlarge',
+    focus: {
+      border: {
+        color: 'transparent',
+      },
+    },
+    hover: {
+      color: 'transparent',
+      background: 'transparent',
+    },
   },
   tabs: {
     header: {
@@ -49,9 +58,9 @@ export const theme = {
     margin: {
       'left': '0px',
     },
-    hover:{
+    hover: {
       color: '#8899A6',
-    }
+    },
   },
   brandColor: '#333333',
   baseFontSize: 16,

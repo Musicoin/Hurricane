@@ -10,7 +10,9 @@ import Track from '../../components/Track';
 import {Avatar, Box, Button, Tab, Tabs, Text} from 'grommet';
 
 import {Heading} from 'grommet';
-import {ShareOption, Group} from 'grommet-icons';
+import {ShareOption, Group, StatusGood} from 'grommet-icons';
+
+import Loading from '../../components/Common/Loading';
 
 const Artist = (props) => {
   const router = useRouter();
@@ -19,7 +21,7 @@ const Artist = (props) => {
   return (
       <Query query={GetArtistQuery} variables={{id: artistId}}>
         {({loading, error, data}) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <Loading />;
           if (error) return <p>Error: {error.message}</p>;
           if (data && data.getArtist) {
             let artist = data.getArtist;
@@ -29,13 +31,30 @@ const Artist = (props) => {
                     <Box background="linear-gradient(#F2D099, #F9F9F9)" pad="large">
                       <Box basis="full" width="1200px" align="center" justify="start" alignSelf="center" gap="medium" direction="row">
                         <Avatar src={artist.imageUrl} size="184px"/>
-                        <Box height="184px" direction="column" justify="around">
-                          <Text weight="bold" size="40px">{artist.name}</Text>
-                          <Box direction="row" gap="xsmall" align="center">
-                            <Box background="linear-gradient(to top right, #6A82FB, #FC5C7D)">
-                              <Button plain margin="5px" color="white" size="small" icon={<Group color="white" size="small"/>} label={<Text size="12px">Follow</Text>}/>
+                        <Box height="184px" width="992px" direction="row" justify="between">
+                          <Box direction="column" justify="around">
+                            <Box direction="row" gap="small" align="center">
+                              <Text weight="bold" size="40px">{artist.name}</Text>
+                              {artist.verified && <StatusGood color="#51C181"/>}
                             </Box>
-                            <Button plain margin="xsmall" color="brand" size="small" icon={<ShareOption color="brand" size="small"/>}/>
+                            <Box direction="row" gap="xsmall" align="center">
+                              <Box background="linear-gradient(to top right, #6A82FB, #FC5C7D)">
+                                <Button plain gap="xsmall" margin={{horizontal: "10px", vertical:"5px"}} color="white" size="small" icon={<Group color="white" size="small"/>} label={<Text size="12px">Follow</Text>}/>
+                              </Box>
+                              <Button plain pad="medium" color="brand" size="medium" icon={<ShareOption color="brand" size="small"/>}/>
+                            </Box>
+                          </Box>
+                          <Box direction="column" justify="around">
+                            <Box direction="row" justify="end" gap="medium">
+                              <Box align="center" justify="center">
+                                <Text size="32px" weight="bold">{artist.followers}</Text>
+                                <Text size="16px">Followers</Text>
+                              </Box>
+                              <Box align="center" justify="center">
+                                <Text size="32px" weight="bold">{artist.tipCount}</Text>
+                                <Text size="16px">Tipped</Text>
+                              </Box>
+                            </Box>
                           </Box>
                         </Box>
                       </Box>

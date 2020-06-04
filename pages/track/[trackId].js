@@ -10,6 +10,8 @@ import Track from '../../components/Track';
 import {PlayFill, Favorite, Money, ShareOption, AddCircle} from 'grommet-icons';
 import ChangeCurrentTrack from '../../graphql/mutation/local/ChangeCurrentTrack';
 
+import Loading from '../../components/Common/Loading';
+
 const TrackPage = (props) => {
   const router = useRouter();
   const {trackId} = router.query;
@@ -34,7 +36,7 @@ const TrackPage = (props) => {
     }
   }, [data]);
 
-  if (!called || loading) return <p>Loading...</p>;
+  if (!called || loading) return <Loading/>;
   if (error) return <p>Error: {error.message}</p>;
   if (data && data.getReleaseById) {
     let release = data.getReleaseById;
@@ -45,7 +47,7 @@ const TrackPage = (props) => {
               <Image height="184px" width="184px" src={release.trackImg}/>
               <Box height="184px" direction="column" justify="between">
                 <Box direction="row" gap="small">
-                  <Box round="full" background="linear-gradient(to top right, #6A82FB, #FC5C7D)" pad={{top: "12px", bottom: "10px", right: "10px", left: "14px"}}>
+                  <Box round="full" background="linear-gradient(to top right, #6A82FB, #FC5C7D)" pad={{top: '12px', bottom: '10px', right: '10px', left: '14px'}}>
                     <Button plain hoverIndicator icon={<PlayFill color="white"/>} onClick={() => changeCurrentTrack({variables: {track: release}})}/>
                   </Box>
                   <Text weight="bold" size="40px">{release.title}</Text>
@@ -67,7 +69,7 @@ const TrackPage = (props) => {
                 <Image src="/img/soundwave.png"/>
                 <Box direction="row" gap="xsmall" align="center">
                   <Box background="linear-gradient(to top right, #6A82FB, #FC5C7D)">
-                    <Button plain margin="5px" color="white" size="small" icon={<Money color="white" size="small"/>} label={<Text size="12px">Tip</Text>}/>
+                    <Button plain gap="xsmall" margin={{horizontal: '10px', vertical: '5px'}} color="white" size="small" icon={<Money color="white" size="small"/>} label={<Text size="12px">Tip</Text>}/>
                   </Box>
                   <Box direction="row" gap="xsmall" align="small">
                     <Favorite color="brand" size="small"/>
@@ -84,7 +86,7 @@ const TrackPage = (props) => {
             <Tabs justify="start">
               <Tab title="Related Tracks">
                 <Box>
-                  {!artistCalled || artistLoading && <p>Loading...</p>}
+                  {!artistCalled || artistLoading && <Loading small/>}
                   {!artistCalled || artistError && <p>Error: {artistError.message}</p>}
                   {(artistData && artistData.getArtist) &&
                   <div>

@@ -8,13 +8,15 @@ import {Query} from 'react-apollo';
 import {Box, Heading, Image, Text} from 'grommet';
 import {useRouter} from 'next/router';
 
+import Loading from '../components/Common/Loading';
+
 const Home = () => {
   const router = useRouter();
   return (
       <Box margin={{'top': '10px'}} alignSelf="center" width="900px">
         <Query query={TrendingReleasesQuery} variables={{limit: 20}}>
           {({loading, error, data, subscribeToMore}) => {
-            if (loading) return (<p>Loading...</p>);
+            if (loading) return (<Loading/>);
             if (error) return (<p>Error: {error.message}</p>);
             const more = () => subscribeToMore({
               document: TrendingListUpdatedSubscription,
@@ -31,7 +33,7 @@ const Home = () => {
                   <Heading margin={{vertical: 'medium'}} level={2}>Recommendation list</Heading>
                   <Box direction="row" justify="between" margin={{bottom: 'medium'}}>
                     {data.trendingList.slice(0, 5).map(track =>
-                        <Box direction="column" align="center" width="168px" gap="xsmall" onClick={e => {
+                        <Box key={track.id} direction="column" align="center" width="168px" gap="xsmall" onClick={e => {
                           e.preventDefault();
                           router.push('/track/[trackId]', `/track/${track.id}`);
                         }}>
