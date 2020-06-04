@@ -7,7 +7,7 @@ export default function Loading(props) {
   if(props.small){
     return(
         <Box basis="full" algin="center" justify="center" alignContent="center">
-          <Box margin={{top: "40vh"}} align="center">
+          <Box margin={{top: "20px"}} align="center">
             <ScaleLoader height={30} width={4} margin={2} radius={2} color={theme.global.colors.brand}/>
           </Box>
         </Box>
