@@ -10,6 +10,9 @@ const GetArtistQuery = gql`
             verified
             followers
             tipCount
+            totalArtistPlays
+            social
+            draftProfile
             artistTracks {
                 id
                 artistId

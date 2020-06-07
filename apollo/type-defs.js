@@ -1,6 +1,8 @@
 import gql from 'graphql-tag';
 
 export const typeDefs = gql`
+    scalar JSON
+    
     type Stats {
         plays: String!
         tips: String!
@@ -31,6 +33,9 @@ export const typeDefs = gql`
         verified: String
         followers: String
         tipCount: String
+        social: JSON
+        totalArtistPlays: Int
+        draftProfile: JSON
         artistTracks: [Release]
     }
 
@@ -38,7 +43,7 @@ export const typeDefs = gql`
         release: Release
         artist: Artist
     }
-    
+
     type WMVerification{
         verified: Boolean
         token: String
