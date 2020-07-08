@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '../components/MyLayout';
 import web3 from '../web3';
-import {Box, Text} from 'grommet';
+import {Box, Text, Paragraph} from 'grommet';
 
 function Migrate() {
   const MUSICOIN_NETWORK_ID = '7762959';
@@ -32,10 +32,10 @@ function Migrate() {
       <Box basis="full" width="1200px" align="center" alignContent='center' alignSelf="center" pad="medium">
         {!account ? <Text textAlign='center'>Please connect metamask to get started</Text> :
             network == MUSICOIN_NETWORK_ID ?
-                <div>
+                <Box align="center" alignContent='center' alignSelf="center">
                   {account && <Text textAlign='center'>Your wallet address is {account}</Text>}
-                  {(account && currentBalance) && <Text textAlign='center'>Your balance is {currentBalance}</Text>}
-                </div>
+                  {(account && currentBalance) && <Paragraph textAlign='center'>Your balance is {currentBalance} $MUSIC</Paragraph>}
+                </Box>
                 : <Text textAlign='center'>Please select your Musicoin wallet in metamask</Text>
         }
       </Box>
