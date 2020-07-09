@@ -62,6 +62,9 @@ export const theme = {
       color: '#8899A6',
     },
   },
+  paragraph: {
+    extend: "max-width: 1200px;"
+  },
   brandColor: '#333333',
   baseFontSize: 16,
   linkColor: '#F3921B',

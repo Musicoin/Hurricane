@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '../components/MyLayout';
 import web3 from '../web3';
-import {Box, Text, Paragraph} from 'grommet';
+import {Box, Paragraph} from 'grommet';
+import {PrimaryButton} from '../components/Common/Button';
 
 function Migrate() {
   const MUSICOIN_NETWORK_ID = '7762959';
@@ -30,13 +31,16 @@ function Migrate() {
 
   return (
       <Box basis="full" width="1200px" align="center" alignContent='center' alignSelf="center" pad="medium">
-        {!account ? <Text textAlign='center'>Please connect metamask to get started</Text> :
+        {!account ? <Paragraph margin="small" textAlign='center'>Please connect metamask to get started</Paragraph> :
             network == MUSICOIN_NETWORK_ID ?
-                <Box align="center" alignContent='center' alignSelf="center">
-                  {account && <Text textAlign='center'>Your wallet address is {account}</Text>}
-                  {(account && currentBalance) && <Paragraph textAlign='center'>Your balance is {currentBalance} $MUSIC</Paragraph>}
-                </Box>
-                : <Text textAlign='center'>Please select your Musicoin wallet in metamask</Text>
+                account && currentBalance ?
+                    <Box align="center" alignContent='center' alignSelf="center">
+                      <Paragraph margin="small" textAlign='center'>Your wallet address is {account}</Paragraph>
+                      <Paragraph textAlign='center'>Your balance is {currentBalance} $MUSIC</Paragraph>
+                      <Paragraph size="small" margin="medium" textAlign="center">Your Musicoin will be converted into $MUS in a ratio of 1000:1</Paragraph>
+                      <PrimaryButton>Convert</PrimaryButton>
+                    </Box> : null
+                : <Paragraph margin="small" textAlign='center'>Please select your Musicoin wallet in metamask</Paragraph>
         }
       </Box>
   );
