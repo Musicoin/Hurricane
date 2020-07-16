@@ -15,6 +15,7 @@ export const PrimaryButton = styled(Button)`
     color: white;
     border: none;
     border-radius: 5px;
+    margin: ${props => props.margin || '0'}px;
 `;
 
 export const SecondaryButton = styled(Button)`
