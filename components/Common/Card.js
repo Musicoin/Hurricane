@@ -30,7 +30,7 @@ const FilterLinkActive = styled(FilterLink)`
 `;
 
 const Content = styled.div`
-    
+    width: ${props => props.width ? props.width : 'auto'};
 `;
 
 export const More = styled.div`
@@ -55,7 +55,7 @@ export default function Card(props) {
         <Title>
           <p>{props.title}</p>
         </Title>}
-        <Content>
+        <Content width={props.width}>
           {props.children}
         </Content>
       </Wrapper>
