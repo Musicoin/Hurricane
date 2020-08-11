@@ -17,7 +17,9 @@ export const PrimaryButton = styled(Button)`
     border-radius: 5px;
     margin: ${props => props.margin || '0'}px;
     width: ${props => props.width ? props.width : 'auto'};
+    height: ${props => props.height? props.height: 'auto'};
     text-align: center;
+    padding: ${props => props.padding? props.padding : "8px 16px"};
 `;
 
 export const SecondaryButton = styled(Button)`

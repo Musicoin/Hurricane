@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '../components/MyLayout';
 import web3 from '../web3';
-import {Box, Paragraph, Button, Heading, Table, TableHeader, TableBody, TableRow, TableCell} from 'grommet';
+import {Box, Paragraph, Button, Heading, Table, TableHeader, TableBody, TableRow, TableCell, Image, Text} from 'grommet';
 import {Copy} from 'grommet-icons';
 import {PrimaryButton} from '../components/Common/Button';
 import Loading from '../components/Common/Loading';
@@ -16,7 +16,7 @@ function Migrate() {
   const [account, setAccount] = useState('');
   const [currentBalance, setCurrentBalance] = useState('');
   const [step, setStep] = useState(1);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('0');
 
   const migrate = async () => {
     setStep(2);
@@ -40,7 +40,7 @@ function Migrate() {
 
   const copyAddress = async () => {
     await navigator.clipboard.writeText(account);
-    alert('addres copied!');
+    alert('address copied!');
   };
 
   const setMax = () => {
@@ -72,16 +72,16 @@ function Migrate() {
             step == 1 && (
                 network == MUSICOIN_NETWORK_ID ?
                     account && currentBalance ?
-                        <Box align="center" alignContent='center' alignSelf="center">
-                          <Heading level={4}>My Wallet Address</Heading>
+                        <Box alignSelf="center">
+                          <Heading margin={{left: '12px'}} level={6}>My Wallet Address</Heading>
                           <Box margin={{top: '10px'}} align="center">
                             <Card width="800px">
-                              <Box pad="small" direction="row" align="center" justify="between">
+                              <Box pad={{top: 'small', bottom: 'small', left: 'medium', right: 'medium'}} direction="row" align="center" justify="between">
                                 <Box>
-                                  <Paragraph>{account}</Paragraph>
+                                  <Paragraph size="small">{account}</Paragraph>
                                 </Box>
                                 <Box>
-                                  <Button onClick={copyAddress} label="" icon={<Copy size="medium"/>}/>
+                                  <Button onClick={copyAddress} label="" icon={<Copy color="#4AB7E8" size="20px"/>}/>
                                 </Box>
                               </Box>
                             </Card>
@@ -93,25 +93,31 @@ function Migrate() {
                                   <TableHeader>
                                     <TableRow>
                                       <TableCell scope="col" border="bottom">
-                                        Asset
+                                        <Text color="#8899A6" size="12px">Asset</Text>
                                       </TableCell>
                                       <TableCell scope="col" border="bottom">
-                                        Balance
+                                        <Text color="#8899A6" size="12px">Balance</Text>
                                       </TableCell>
                                     </TableRow>
                                   </TableHeader>
                                   <TableBody>
                                     <TableRow>
                                       <TableCell scope="row">
-                                        <strong>$MUSIC</strong>
+                                        <Box direction="row" alignContent="center" align="center" gap="small">
+                                          <Image src="/img/icons/musicoin.png"/>
+                                          <Text weight="bold" size="small">$MUSIC</Text>
+                                        </Box>
                                       </TableCell>
-                                      <TableCell>{currentBalance}</TableCell>
+                                      <TableCell><Text weight="bold" size="small">{currentBalance}</Text></TableCell>
                                     </TableRow>
                                     <TableRow>
                                       <TableCell scope="row">
-                                        <strong>$MUS</strong>
+                                        <Box direction="row" alignContent="center" align="center" gap="small">
+                                          <Image src="/img/icons/eth.png"/>
+                                          <Text weight="bold" size="small">$MUS</Text>
+                                        </Box>
                                       </TableCell>
-                                      <TableCell>0</TableCell>
+                                      <TableCell><Text weight="bold" size="small">0</Text></TableCell>
                                     </TableRow>
                                   </TableBody>
                                 </Table>
@@ -120,18 +126,18 @@ function Migrate() {
                           </Box>
                           <Box margin={{top: '20px'}} pad="small" align="center">
                             <Card width="800px">
-                              <Box margin="large" direction="column">
-                                <Paragraph size="medium" margin="medium" textAlign="center">Your $MUSIC will be converted into $MUS in a ratio of 1000:1</Paragraph>
+                              <Box margin="medium" direction="column">
+                                <Paragraph color="#8899A6" size="small" margin="medium" textAlign="center">Your $MUSIC will be converted into $MUS in a ratio of 1000:1</Paragraph>
                                 <Box direction="row" align="center" gap="small" justify="center">
-                                  <Paragraph>$MUSIC</Paragraph>
-                                    <TextInputWithButton
-                                        value={amount}
-                                        onClick={setMax}
-                                        onChange={event => setAmount(event.target.value)}
-                                        buttonText="Max"/>
+                                  <Text size="small">$MUSIC</Text>
+                                  <TextInputWithButton
+                                      value={amount}
+                                      onClick={setMax}
+                                      onChange={event => setAmount(event.target.value)}
+                                      buttonText="Max"/>
                                 </Box>
                                 <Box margin="20px" align="center">
-                                  <PrimaryButton width="200px;" margin="5" onClick={migrate}>Convert</PrimaryButton>
+                                  <PrimaryButton height="40px" width="142px" margin="5" padding="12px 16px" onClick={migrate}>Convert</PrimaryButton>
                                 </Box>
                               </Box>
                             </Card>

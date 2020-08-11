@@ -65,8 +65,16 @@ export const theme = {
   paragraph: {
     extend: "max-width: 1200px;"
   },
+  heading:{
+    extend: "color: #8899A6"
+  },
   brandColor: '#333333',
   baseFontSize: 16,
   linkColor: '#F3921B',
+  table: {
+    header: {
+      extend: () => `border-bottom: solid 1px rgba(136,153,166,0.3)`,
+    }
+  },
   em: (pixels, context) => {return `${pixels / context}em`;},
 };

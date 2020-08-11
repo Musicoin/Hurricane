@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 const Text = styled.input`
-  width: 100px;
-  height: 20px;
+  width: 200px;
+  height: 24px;
   border-style: solid;
   border-width: 2px;
   border-color: #E6ECF0;
+  border-radius: 3px;
   padding: 10px;
   padding-right: 50px;
+  font-size: 14px;
 `;
 
 const Button = styled.input`
@@ -17,6 +19,7 @@ const Button = styled.input`
   background: #E6ECF0;
   -webkit-appearance: none;
   border: 0;
+  font-size: 12px;
 `;
 
 export default function textInputWithButton(props) {
